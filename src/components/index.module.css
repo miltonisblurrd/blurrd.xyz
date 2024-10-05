@@ -1,3 +1,12 @@
+:root {
+  --max-width: 800px;
+  --padding: 2rem;
+}
+
+html {
+  font-size: 16px; /* Base font size */
+}
+
 .list {
   display: grid;
   margin: 0;
@@ -51,4 +60,221 @@
 .intro {
   max-width: none;
   line-height: var(--line-height-loose);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--padding);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  font-size: 0.875rem; /* 14px */
+}
+
+.title, .description, .sectionTitle, .blogTitle {
+  font-size: 1.125rem; /* 18px */
+}
+
+.header {
+  /* Remove any height, padding, or margin constraints */
+  padding-top: 40px; /* Add padding to the top of the header if needed */
+  margin-top: 20px; /* Change to 20px margin at the top */
+}
+
+.headerLeft {
+  /* Remove any specific styling */
+}
+
+.logoLink {
+  display: block;
+}
+
+.logo {
+  max-width: 150px; /* Match the width in StaticImage */
+  width: 100%;
+  height: auto;
+  margin-top: 0px; /* Adjust to match the header's top margin if needed */
+  margin-bottom: 20px; /* Keeping the 20px margin at the bottom */
+}
+
+.logoImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Target the placeholder div */
+.logo > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero {
+  margin-bottom: 4rem;
+}
+
+.description {
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  margin-bottom: 2rem;
+}
+
+.blogList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.blogItem,
+.index-module--blogItem--ee17a {
+  margin: 0;
+  padding: 15px;
+  /* Other existing styles for blogItem */
+}
+
+.blogItem {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.blogItem:hover {
+  transform: translateY(-5px);
+}
+
+.blogDate {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
+  .blogGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem var(--padding);
+}
+
+/* Set general paragraph style */
+p {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Specific style for the description class, if needed */
+.description {
+  font-size: 0.875rem; /* 14px, same as general paragraphs */
+  margin-bottom: 1rem;
+}
+
+/* If you need to target the specific class */
+.index-module--description--fbdf3 {
+  font-size: 0.875rem; /* 14px, same as general paragraphs */
+}
+
+.twitter-follow-container {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 1000 !important;
+}
+
+.twitter-follow-button {
+  display: flex !important;
+  align-items: center !important;
+  background-color: #000 !important;
+  color: #fff !important;
+  padding: 10px 15px !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.twitter-follow-button:hover {
+  background-color: #1a1a1a !important;
+}
+
+.twitter-logo {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 8px !important;
+  fill: #fff !important;
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Adjust this value to control spacing between items */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  padding-left: 0; /* Remove any left padding */
+}
+
+.fullScreenContainer {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  /* Add your logo styling here */
+}
+
+.mainContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0; /* Remove all padding */
+}
+
+/* If you want to keep some vertical spacing but remove horizontal padding */
+.mainContent p {
+  margin: 1em 0; /* Adjust vertical margin as needed */
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.mainContent strong {
+  font-weight: 700; /* or any other value you prefer */
+}
+
+.boldText {
+  font-weight: 700 !important;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .fullScreenContainer {
+    overflow-y: auto;
+  }
 }

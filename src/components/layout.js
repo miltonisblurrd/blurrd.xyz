@@ -6,45 +6,32 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-
-import Header from "./header"
+import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
+import * as styles from "./index.module.css"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.headerLeft}>
+          <Link to="/" className={styles.logoLink}>
+            <StaticImage
+              src="../images/blurrd.svg"
+              alt="Blurrd logo"
+              placeholder="tracedSVG"
+              layout="constrained"
+              width={150} // Set this to 150
+              className={styles.logo}
+              imgClassName={styles.logoImg}
+            />
+          </Link>
+        </div>
+      </header>
+      <main>{children}</main>
+      {/* Footer removed */}
+    </div>
   )
 }
 
