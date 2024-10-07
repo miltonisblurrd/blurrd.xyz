@@ -7,7 +7,7 @@ console.log("Access Token:", process.env.CONTENTFUL_ACCESS_TOKEN)
 
 module.exports = {
   siteMetadata: {
-    title: `My Gatsby Site`,
+    title: `blurrd`,
     description: `A starter template for Gatsby with Contentful integration.`,
     author: `@yourusername`,
   },
@@ -20,6 +20,13 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
   ],
