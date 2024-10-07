@@ -19,29 +19,4 @@ exports.createPages = async ({ graphql, actions }) => {
     context: {},
     defer: true,
   })
-
-  // Create pages dynamically for each Contentful Blog Post
-  const blogPostTemplate = path.resolve(`./src/templates/blog-post.js`)
-
-  const result = await graphql(`
-    {
-      allContentfulBlogPost {
-        edges {
-          node {
-            slug
-          }
-        }
-      }
-    }
-  `)
-
-  result.data.allContentfulBlogPost.edges.forEach(edge => {
-    createPage({
-      path: `/blog/${edge.node.slug}`,
-      component: blogPostTemplate,
-      context: {
-        slug: edge.node.slug,
-      },
-    })
-  })
 }
