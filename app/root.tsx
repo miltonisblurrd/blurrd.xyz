@@ -4,6 +4,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  LiveReload,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
@@ -35,11 +36,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <LiveReload />
+        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
       </body>
     </html>
   );
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      </head>
+      <body>
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+      </body>
+    </html>
+  );
 }
