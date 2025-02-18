@@ -8,4 +8,7 @@ export default defineConfig({
       adapter: netlifyAdapter(),
     }),
   ],
+  build: {
+    outDir: "public",
+  },
 }); 
