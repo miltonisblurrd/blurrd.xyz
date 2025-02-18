@@ -1,11 +1,9 @@
 /** @type {import('@remix-run/dev').AppConfig} */
-module.exports = {
+export default {
   ignoredRouteFiles: ["**/.*"],
+  server: "./server.js",
+  serverBuildPath: ".netlify/functions-internal/server.js",
   serverModuleFormat: "cjs",
-  future: {
-    v2_errorBoundary: true,
-    v2_meta: true,
-    v2_normalizeFormMethod: true,
-    v2_routeConvention: true,
-  },
+  serverPlatform: "node",
+  serverMinify: false,
 };
