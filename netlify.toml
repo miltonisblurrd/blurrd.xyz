@@ -3,6 +3,9 @@
   publish = "build/client"
   functions = "netlify/functions"
 
+[functions]
+  included_files = ["build/**"]
+
 [dev]
   command = "npm run dev"
   port = 3000
@@ -11,6 +14,7 @@
   from = "/*"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[headers]]
   for = "/build/*"
