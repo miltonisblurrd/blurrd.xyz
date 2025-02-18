@@ -6,4 +6,8 @@ export default {
   serverModuleFormat: "cjs",
   serverPlatform: "node",
   serverMinify: false,
+  future: {
+    v3_fetcherPersist: true,
+    v3_relativeSplatPath: true,
+  },
 };
