@@ -17,7 +17,7 @@ export default function Index() {
     <>
       <div className="min-h-screen bg-[#fbfaf6] p-4">
         <div className="flex items-end">
-          <div className="mr-[10px] h-[58px] w-[58px]">
+          <div className="mr-[5px] h-[58px] w-[58px]">
             <img
               src={profileImage}
               alt="Milton profile"
