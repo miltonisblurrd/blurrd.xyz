@@ -41,10 +41,10 @@ export default function Index() {
             Currently at <a href="https://www.shipnetwork.com" className="text-[#6975f8] hover:opacity-80">@shipnetwork</a>, as senior web developer scaling <a href="https://prcl.com" className="text-[#6975f8] hover:opacity-80">@prclworld</a>.
           </p>
           <p className="mb-4">
-            On my free time, I create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and orchestrate AI at <span className="text-[#6975f8]">@symphony</span>.
+            On my free time, I stay active in the gym and eat healthy allowing me to create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and orchestrate AI at <span className="text-[#6975f8]">@symphny</span>.
           </p>
           <p className="mb-4">
-            Outside of work, I spend quality time with my wife and daughter watching sports, eating good food, and travel together, and I stay active in the gym and eat healthy.
+            Outside of work, I spend quality time with my wife and daughter watching sports, eating good food, and traveling together.
           </p>
           <p>
             Looking to bring your vision into a real-world product/app/interface/website? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
