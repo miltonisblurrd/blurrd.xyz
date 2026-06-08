@@ -17,16 +17,18 @@ export default function Index() {
     <>
       <div className="min-h-screen bg-[#fbfaf6] p-4">
         <div className="flex items-end">
-          <img
-            src={profileImage}
-            alt="Milton profile"
-            className="mr-[10px] h-12 w-12 object-cover"
-          />
-          <div className="w-[210px]">
+          <div className="mr-[10px] h-[58px] w-[58px]">
+            <img
+              src={profileImage}
+              alt="Milton profile"
+              className="h-full w-full border border-[#7a7a7a] object-cover"
+            />
+          </div>
+          <div className="h-[58px] w-[210px]">
             <img
               src="/logo.svg"
               alt="Your Logo"
-              className="w-full"
+              className="h-full w-full object-contain"
             />
           </div>
         </div>
@@ -42,7 +44,7 @@ export default function Index() {
             On my free time, I create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and orchestrate AI at <span className="text-[#6975f8]">@symphony</span>.
           </p>
           <p className="mb-4">
-            Outside of work, I stay active in the gym, eat healthy, and spend quality time with my wife and daughter watching sports, movies, dinners, and family outings.
+            Outside of work, I stay active in the gym, eat healthy, and spend quality time with my wife and daughter watching sports, eating good food, and family outings.
           </p>
           <p>
             Looking to bring your vision into a real-world product/app/interface/website? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
