@@ -3,7 +3,11 @@ import type { MetaFunction } from "@remix-run/node";
 export const meta: MetaFunction = () => {
   return [
     { title: "miltonisblurrd - frontend developer las vegas" },
-    { name: "description", content: "I’m a frontend developer based in Las Vegas. I’m interested in websites, smart contracts, and skateboarding. Currently a Sr. web developer at Shipnetwork, building and scaling the companies website." },
+    {
+      name: "description",
+      content:
+        "I’m a senior frontend developer based in Las Vegas, focused on code, design, and AI. Currently at Shipnetwork scaling prclworld.",
+    },
   ];
 };
 
@@ -21,13 +25,16 @@ export default function Index() {
         
         <div className="mt-6 font-['Open_Sans'] text-[15px] leading-[19px] max-w-[600px] text-black">
           <p className="mb-4">
-            I'm a frontend developer with 8+ years of professional experience. Based in Las Vegas, I am interested in websites, smart contracts, and skateboarding.
+            I&apos;m a senior frontend developer with 8+ years of experience, focused on code, design, and AI.
           </p>
           <p className="mb-4">
-            Currently at <a href="https://www.shipnetwork.com" className="text-[#6975f8] hover:opacity-80">@ShipNetwork</a>, as senior web developer building <a href="https://www.firstmile.com" className="text-[#6975f8] hover:opacity-80">@firstmile</a> and scaling <a href="https://prcl.com" className="text-[#6975f8] hover:opacity-80">@prclworld</a>.
+            Currently at <a href="https://www.shipnetwork.com" className="text-[#6975f8] hover:opacity-80">@shipnetwork</a>, as senior web developer scaling <a href="https://prcl.com" className="text-[#6975f8] hover:opacity-80">@prclworld</a>.
           </p>
           <p className="mb-4">
-            On my free time I like to create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and <a href="https://www.blurrdskateboards.com" className="text-[#6975f8] hover:opacity-80">@blurrdskateboards</a>.
+            On my free time, I create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and orchestrate AI at <span className="text-[#6975f8]">@symphony</span>.
+          </p>
+          <p className="mb-4">
+            Outside of work, I stay active in the gym, eat healthy, and spend quality time with my wife and daughter watching sports, movies, dinners, and family outings.
           </p>
           <p>
             Looking to bring your vision into a real-world product/app/interface/website? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
