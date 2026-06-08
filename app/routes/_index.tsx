@@ -16,7 +16,7 @@ export default function Index() {
   return (
     <>
       <div className="min-h-screen bg-[#fbfaf6] p-4">
-        <div className="flex items-center">
+        <div className="flex items-end">
           <img
             src={profileImage}
             alt="Milton profile"
@@ -31,7 +31,7 @@ export default function Index() {
           </div>
         </div>
         
-        <div className="mt-6 font-['Open_Sans'] text-[15px] leading-[19px] max-w-[600px] text-black">
+        <div className="mt-6 font-['JetBrains_Mono'] text-[15px] font-normal leading-[19px] max-w-[600px] text-[#7a7a7a]">
           <p className="mb-4">
             I&apos;m a senior frontend developer with 8+ years of experience, focused on code, design, and AI.
           </p>
