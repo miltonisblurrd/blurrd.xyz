@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import profileImage from "../../69bf1a53c911272bf6b5ccdf_IMG_6481.jpg";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,12 +16,19 @@ export default function Index() {
   return (
     <>
       <div className="min-h-screen bg-[#fbfaf6] p-4">
-        <div className="w-[234px]">
+        <div className="flex items-center">
           <img
-            src="/logo.svg"
-            alt="Your Logo"
-            className="w-full"
+            src={profileImage}
+            alt="Milton profile"
+            className="mr-[10px] h-12 w-12 object-cover"
           />
+          <div className="w-[210px]">
+            <img
+              src="/logo.svg"
+              alt="Your Logo"
+              className="w-full"
+            />
+          </div>
         </div>
         
         <div className="mt-6 font-['Open_Sans'] text-[15px] leading-[19px] max-w-[600px] text-black">
