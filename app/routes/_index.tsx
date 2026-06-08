@@ -47,7 +47,7 @@ export default function Index() {
             Outside of work, I spend quality time with my wife and daughter watching sports, eating good food, and traveling together.
           </p>
           <p>
-            Looking to bring your vision into a real-world product/app/interface/website? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
+            looking to work together? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
           </p>
         </div>
       </div>
