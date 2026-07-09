@@ -1,5 +1,14 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
+import { BlogSection } from "~/components/BlogSection";
+import { getAllPosts } from "~/utils/blog.server";
 import profileImage from "../../69bf1a53c911272bf6b5ccdf_IMG_6481.jpg";
+
+export async function loader(_args: LoaderFunctionArgs) {
+  const posts = await getAllPosts();
+  return { posts };
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,6 +22,8 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const { posts } = useLoaderData<typeof loader>();
+
   return (
     <>
       <div className="min-h-screen bg-[#fbfaf6] p-4">
@@ -50,6 +61,8 @@ export default function Index() {
             looking to work together? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
           </p>
         </div>
+
+        <BlogSection posts={posts} />
       </div>
 
       {/* Twitter Follow Button */}
