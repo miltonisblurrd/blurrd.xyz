@@ -52,7 +52,7 @@ export default function Index() {
             Currently at <a href="https://www.shipnetwork.com" className="text-[#6975f8] hover:opacity-80">@shipnetwork</a>, as senior web developer scaling <a href="https://prcl.com" className="text-[#6975f8] hover:opacity-80">@prclworld</a>.
           </p>
           <p className="mb-4">
-            On my free time, I stay active in the gym and eat healthy allowing me to create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and orchestrate AI at <span className="text-[#6975f8]">@symphny</span>.
+            On my free time, I stay active in the gym and eat healthy allowing me to create cool things with code at <a href="https://www.blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">@blurrdstudio</a> and orchestrate AI at <a href="https://www.symphny.xyz" className="text-[#6975f8] hover:opacity-80">@symphny</a>.
           </p>
           <p className="mb-4">
             Outside of work, I spend quality time with my wife and daughter watching sports, eating good food, and traveling together.
