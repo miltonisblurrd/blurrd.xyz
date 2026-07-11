@@ -12,7 +12,7 @@ export function YouTubeEmbed({ url }: YouTubeEmbedProps) {
   }
 
   return (
-    <div className="mb-6 aspect-video w-full overflow-hidden border border-[#e5e5e5]">
+    <div className="aspect-video w-full overflow-hidden border border-[#e5e5e5]">
       <iframe
         src={`https://www.youtube.com/embed/${videoId}`}
         title="YouTube video"

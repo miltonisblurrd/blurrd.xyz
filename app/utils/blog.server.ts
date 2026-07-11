@@ -46,6 +46,8 @@ function parseFrontmatter(slug: string, raw: string): BlogPost | null {
     category: data.category ? String(data.category) : undefined,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     youtube: data.youtube ? String(data.youtube) : undefined,
+    readTime: data.readTime ? String(data.readTime) : undefined,
+    modified: data.modified ? String(data.modified) : undefined,
     content,
     html: "",
   };

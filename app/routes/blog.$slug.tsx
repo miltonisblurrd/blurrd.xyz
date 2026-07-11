@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 import { YouTubeEmbed } from "~/components/YouTubeEmbed";
-import { extractYouTubeId } from "~/utils/youtube";
+import { buildBlogPostSchema } from "~/utils/blog-schema";
 import { getPostBySlug } from "~/utils/blog.server";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -12,16 +12,21 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   const { post } = data;
   const url = `https://blurrd.xyz/blog/${post.slug}`;
+  const schema = buildBlogPostSchema(post);
 
   return [
-    { title: `${post.title} — miltonisblurrd` },
+    { title: `${post.title} | miltonisblurrd` },
     { name: "description", content: post.description },
     { property: "og:title", content: post.title },
     { property: "og:description", content: post.description },
     { property: "og:type", content: "article" },
     { property: "og:url", content: url },
     { property: "article:published_time", content: post.date },
+    ...(post.modified
+      ? [{ property: "article:modified_time", content: post.modified }]
+      : []),
     { tagName: "link", rel: "canonical", href: url },
+    { "script:ld+json": schema },
   ];
 };
 
@@ -51,82 +56,93 @@ function formatDate(date: string) {
 
 export default function BlogPost() {
   const { post } = useLoaderData<typeof loader>();
-  const youtubeId = post.youtube ? extractYouTubeId(post.youtube) : null;
-
-  const jsonLd: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    author: {
-      "@type": "Person",
-      name: "Milton",
-      url: "https://blurrd.xyz",
-    },
-    url: `https://blurrd.xyz/blog/${post.slug}`,
-    keywords: post.tags.join(", "),
-  };
-
-  if (youtubeId) {
-    jsonLd.video = {
-      "@type": "VideoObject",
-      name: post.title,
-      description: post.description,
-      uploadDate: post.date,
-      embedUrl: `https://www.youtube.com/embed/${youtubeId}`,
-      contentUrl: post.youtube,
-    };
-  }
 
   return (
-    <div className="min-h-screen bg-[#fbfaf6] p-4">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <div className="max-w-[680px]">
+    <div className="min-h-screen bg-[#fbfaf6] p-4 pb-16">
+      <div className="mx-auto max-w-[720px]">
         <a
           href="/#blog"
-          className="mb-6 inline-block font-['JetBrains_Mono'] text-[13px] text-[#6975f8] hover:opacity-80"
+          className="mb-8 inline-block font-['JetBrains_Mono'] text-[13px] text-[#6975f8] hover:opacity-80"
         >
-          ← Back to writing
+          ← Back to My Thoughts
         </a>
 
-        <article>
-          <header className="mb-6">
-            <div className="mb-2 flex flex-wrap items-center gap-2 font-['JetBrains_Mono'] text-[12px] text-[#7a7a7a]">
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
-              {post.category && (
-                <span className="rounded bg-[#f0f0f0] px-2 py-0.5">
-                  {post.category}
-                </span>
-              )}
+        <article itemScope itemType="https://schema.org/BlogPosting">
+          <meta itemProp="headline" content={post.title} />
+          <meta itemProp="description" content={post.description} />
+          <meta itemProp="datePublished" content={post.date} />
+          <meta
+            itemProp="dateModified"
+            content={post.modified ?? post.date}
+          />
+          <meta itemProp="author" content="BLURRD" />
+          <meta itemProp="url" content={`https://blurrd.xyz/blog/${post.slug}`} />
+
+          <header className="mb-10">
+            <div className="mb-4 flex w-full items-center justify-between font-['JetBrains_Mono'] text-[12px] text-[#7a7a7a]">
+              <time dateTime={post.date} itemProp="datePublished">
+                {formatDate(post.date)}
+              </time>
+              <div className="flex items-center gap-2">
+                {post.readTime && <span>{post.readTime}</span>}
+                {post.category && (
+                  <span
+                    className="rounded bg-[#f0f0f0] px-2 py-0.5"
+                    itemProp="articleSection"
+                  >
+                    {post.category}
+                  </span>
+                )}
+              </div>
             </div>
-            <h1 className="mb-3 font-['JetBrains_Mono'] text-[22px] font-normal leading-[28px] text-black">
+
+            <h1
+              className="mb-5 font-['JetBrains_Mono'] text-[28px] font-normal leading-[1.25] text-black md:text-[32px]"
+              itemProp="headline"
+            >
               {post.title}
             </h1>
-            {post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+
+            <p
+              className="font-sans text-[17px] font-normal leading-[1.55] text-[#5a5a5a] md:text-[19px]"
+              itemProp="description"
+            >
+              {post.description}
+            </p>
+          </header>
+
+          {post.youtube && (
+            <div className="mb-10">
+              <YouTubeEmbed url={post.youtube} />
+            </div>
+          )}
+
+          <hr className="mb-10 border-[#e5e5e5]" />
+
+          <div
+            className="prose-blog"
+            itemProp="articleBody"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+
+          {post.tags.length > 0 && (
+            <footer className="mt-12 border-t border-[#e5e5e5] pt-8">
+              <p className="mb-3 font-['JetBrains_Mono'] text-[12px] text-[#7a7a7a]">
+                Tagged
+              </p>
+              <div className="flex flex-wrap gap-x-2 gap-y-1">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
                     className="font-['JetBrains_Mono'] text-[12px] text-[#6975f8]"
+                    itemProp="keywords"
                   >
                     #{tag}
                   </span>
                 ))}
               </div>
-            )}
-          </header>
-
-          {post.youtube && <YouTubeEmbed url={post.youtube} />}
-
-          <div
-            className="prose-blog font-['JetBrains_Mono'] text-[15px] font-normal leading-[22px] text-[#7a7a7a]"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+            </footer>
+          )}
         </article>
       </div>
     </div>
