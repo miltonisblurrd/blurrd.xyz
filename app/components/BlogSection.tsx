@@ -75,12 +75,12 @@ export function BlogSection({ posts }: BlogSectionProps) {
     search || selectedTag || selectedCategory || sort !== "newest";
 
   return (
-    <section id="blog" className="mt-10 max-w-[900px]">
+    <section id="blog" className="mt-10 max-w-[380px]">
       <h2 className="mb-4 font-['JetBrains_Mono'] text-[15px] md:text-[25px] font-normal text-black">
         My Thoughts
       </h2>
 
-      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div className="mb-4 flex w-full flex-col gap-3 sm:flex-row sm:items-center">
         <input
           type="search"
           placeholder="Search posts..."
@@ -89,7 +89,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
             setSearch(e.target.value);
             setVisibleCount(PAGE_SIZE);
           }}
-          className="w-full border border-[#e5e5e5] bg-white px-3 py-2 font-['JetBrains_Mono'] text-[13px] text-[#7a7a7a] outline-none focus:border-[#6975f8] sm:max-w-[280px]"
+          className="w-full flex-1 border border-[#e5e5e5] bg-white px-3 py-2 font-['JetBrains_Mono'] text-[13px] text-[#7a7a7a] outline-none focus:border-[#6975f8]"
         />
         <select
           value={sort}
@@ -158,7 +158,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
 
       {visiblePosts.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid w-full grid-cols-1 gap-4">
             {visiblePosts.map((post) => (
               <BlogCard key={post.slug} post={post} />
             ))}

@@ -44,7 +44,7 @@ export default function Index() {
           </div>
         </div>
         
-        <div className="mt-6 font-['JetBrains_Mono'] text-[15px] md:text-[19px] font-normal leading-[19px] md:leading-[23px] max-w-[600px] text-[#7a7a7a]">
+        <div className="mt-6 font-['JetBrains_Mono'] text-[15px] md:text-[19px] font-normal leading-[1.55] max-w-[720px] text-[#7a7a7a]">
           <p className="mb-4">
             I&apos;m a senior frontend developer with 8 years of corporate experience, focused on design &amp; code.
           </p>
