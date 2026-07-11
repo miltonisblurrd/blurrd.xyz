@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 
 import { BlogCard } from "~/components/BlogCard";
-import type { BlogPostMeta } from "~/utils/blog.server";
+import type { BlogPostMeta } from "~/utils/blog.types";
 
 type BlogSectionProps = {
   posts: BlogPostMeta[];

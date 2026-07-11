@@ -1,4 +1,4 @@
-import type { BlogPostMeta } from "~/utils/blog.server";
+import type { BlogPostMeta } from "~/utils/blog.types";
 
 type BlogCardProps = {
   post: BlogPostMeta;

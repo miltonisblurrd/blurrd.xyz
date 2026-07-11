@@ -1,31 +1,32 @@
-import fs from "node:fs";
 import path from "node:path";
 
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
+import rehypeStringify from "rehype-stringify";
 
-const BLOG_DIR = path.join(process.cwd(), "content/blog");
+import type { BlogPost, BlogPostMeta } from "~/utils/blog.types";
 
-export type BlogPostMeta = {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  published: boolean;
-  category?: string;
-  tags: string[];
-  youtube?: string;
-};
+export type { BlogPost, BlogPostMeta };
 
-export type BlogPost = BlogPostMeta & {
-  content: string;
-  html: string;
-};
+const postModules = import.meta.glob<string>("../../content/blog/*.md", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+
+function getRawPosts(): Array<{ slug: string; raw: string }> {
+  return Object.entries(postModules)
+    .map(([filepath, raw]) => ({
+      slug: path.basename(filepath).replace(/\.md$/, ""),
+      raw,
+    }))
+    .filter(({ slug }) => !slug.startsWith("_"));
+}
 
 function parseFrontmatter(slug: string, raw: string): BlogPost | null {
   const { data, content } = matter(raw);
@@ -63,24 +64,7 @@ async function markdownToHtml(markdown: string): Promise<string> {
   return String(result);
 }
 
-function getMarkdownFiles(): string[] {
-  if (!fs.existsSync(BLOG_DIR)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(BLOG_DIR)
-    .filter((file) => file.endsWith(".md") && !file.startsWith("_"));
-}
-
-async function loadPost(slug: string): Promise<BlogPost | null> {
-  const filePath = path.join(BLOG_DIR, `${slug}.md`);
-
-  if (!fs.existsSync(filePath)) {
-    return null;
-  }
-
-  const raw = fs.readFileSync(filePath, "utf-8");
+async function loadPost(slug: string, raw: string): Promise<BlogPost | null> {
   const post = parseFrontmatter(slug, raw);
 
   if (!post) {
@@ -92,9 +76,8 @@ async function loadPost(slug: string): Promise<BlogPost | null> {
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const files = getMarkdownFiles();
   const posts = await Promise.all(
-    files.map((file) => loadPost(file.replace(/\.md$/, "")))
+    getRawPosts().map(({ slug, raw }) => loadPost(slug, raw))
   );
 
   return posts
@@ -103,7 +86,13 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const post = await loadPost(slug);
+  const entry = getRawPosts().find((post) => post.slug === slug);
+
+  if (!entry) {
+    return null;
+  }
+
+  const post = await loadPost(entry.slug, entry.raw);
 
   if (!post || !post.published) {
     return null;
