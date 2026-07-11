@@ -7,7 +7,7 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
-import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
@@ -53,6 +53,7 @@ function parseFrontmatter(slug: string, raw: string): BlogPost | null {
 async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark()
     .use(remarkParse)
+    .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(rehypeSanitize)
