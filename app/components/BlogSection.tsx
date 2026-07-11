@@ -76,8 +76,8 @@ export function BlogSection({ posts }: BlogSectionProps) {
 
   return (
     <section id="blog" className="mt-10 max-w-[900px]">
-      <h2 className="mb-4 font-['JetBrains_Mono'] text-[15px] font-normal text-black">
-        Writing
+      <h2 className="mb-4 font-['JetBrains_Mono'] text-[15px] md:text-[25px] font-normal text-black">
+        My Thoughts
       </h2>
 
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">

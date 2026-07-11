@@ -28,14 +28,14 @@ export default function Index() {
     <>
       <div className="min-h-screen bg-[#fbfaf6] p-4">
         <div className="flex items-end">
-          <div className="mr-[5px] h-[58px] w-[58px]">
+          <div className="mr-[5px] h-[58px] w-[58px] md:h-[78px] md:w-[78px]">
             <img
               src={profileImage}
               alt="Milton profile"
               className="h-full w-full border border-[#7a7a7a] object-cover"
             />
           </div>
-          <div className="h-[58px] w-[210px]">
+          <div className="h-[58px] w-[210px] md:h-[78px]">
             <img
               src="/logo.svg"
               alt="Your Logo"
@@ -44,7 +44,7 @@ export default function Index() {
           </div>
         </div>
         
-        <div className="mt-6 font-['JetBrains_Mono'] text-[15px] font-normal leading-[19px] max-w-[600px] text-[#7a7a7a]">
+        <div className="mt-6 font-['JetBrains_Mono'] text-[15px] md:text-[19px] font-normal leading-[19px] md:leading-[23px] max-w-[600px] text-[#7a7a7a]">
           <p className="mb-4">
             I&apos;m a senior frontend developer with 8 years of corporate experience, focused on design &amp; code.
           </p>
@@ -58,7 +58,7 @@ export default function Index() {
             Outside of work, I spend quality time with my wife and daughter watching sports, eating good food, and traveling together.
           </p>
           <p>
-            looking to work together? <a href="https://calendly.com/blurrd/15min?month=2025-01" className="text-[#6975f8] hover:opacity-80">Schedule a call</a> or shoot me an email: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
+            Looking to contact me? Email me at: <a href="mailto:milton@blurrdstudio.com" className="text-[#6975f8] hover:opacity-80">milton@blurrdstudio.com</a>
           </p>
         </div>
 
