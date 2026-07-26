@@ -2,7 +2,7 @@
 title: "I built OnCue Live because streaming shouldn't cost you another $200"
 description: "How I went from a frustrated OBS setup to a native Mac control surface beta in two weeks, and why I'm releasing it early for real streamers to break."
 date: "2026-07-10"
-modified: "2026-07-10"
+modified: "2026-07-26"
 published: true
 category: "product"
 tags: ["obs", "streaming", "swiftui", "macos", "build-in-public", "beta"]
@@ -191,11 +191,11 @@ If I started over knowing what I know now:
 
 ## Try the beta
 
-If you stream on macOS with OBS and want to test an early build, I want to hear from you.
+If you stream on macOS with OBS and want to test an early build, you can join through TestFlight:
 
-> **Apple beta link:** dropping the public TestFlight / App Store link here once it's live.
+**[Join the OnCue Live beta on TestFlight](https://testflight.apple.com/join/Aat3akF2)**
 
-Until then, email **[milton@blurrdstudio.com](mailto:milton@blurrdstudio.com)** and I'll get you set up.
+If you run into issues getting set up, email **[milton@blurrdstudio.com](mailto:milton@blurrdstudio.com)** and I'll help you out.
 
 Try it on a **real workflow**, not just a sandbox. Tell me:
 
@@ -231,5 +231,7 @@ I built OnCue Live because I wanted it for my own OBS setup. I wanted to know if
 This beta isn't the finish line. It's how I find out whether a Mac-native control surface actually makes streaming easier for more than just me.
 
 If that's you, test it and be brutally honest. That's more valuable to me than hype right now.
+
+I'll follow up with a part 2 once I've tested it live on a real stream and can share whether it actually helped me and was worth using when it mattered.
 
 -BLURRD
