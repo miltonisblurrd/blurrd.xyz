@@ -321,6 +321,8 @@ It’s on-device. It’s fail-closed where it counts. It’s still early.
 
 Try the beta. Break it on real footage. Tell me where a face slipped.
 
+This is an ongoing passion project. I'll keep writing as I go — different parts, real user testing, and what it's like growing the app through social media. Stay tuned.
+
 [safefaces.xyz](https://www.safefaces.xyz/) · [TestFlight](https://testflight.apple.com/join/Uv7xJrkp)
 
 Post the memory. Not their face.
