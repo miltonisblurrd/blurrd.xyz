@@ -75,7 +75,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
     search || selectedTag || selectedCategory || sort !== "newest";
 
   return (
-    <section id="blog" className="mt-10 max-w-[380px]">
+    <section id="blog" className="mt-10 w-full max-w-[1140px]">
       <h2 className="mb-4 font-['JetBrains_Mono'] text-[15px] md:text-[25px] font-normal text-black">
         My Thoughts
       </h2>
@@ -158,7 +158,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
 
       {visiblePosts.length > 0 ? (
         <>
-          <div className="grid w-full grid-cols-1 gap-4">
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {visiblePosts.map((post) => (
               <BlogCard key={post.slug} post={post} />
             ))}

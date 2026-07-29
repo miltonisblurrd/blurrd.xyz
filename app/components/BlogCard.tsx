@@ -16,7 +16,7 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <a
       href={`/blog/${post.slug}`}
-      className="group flex flex-col border border-[#e5e5e5] bg-white p-4 transition-colors hover:border-[#6975f8]"
+      className="group flex h-full flex-col border border-[#e5e5e5] bg-white p-4 transition-colors hover:border-[#6975f8]"
     >
       <div className="mb-2 flex w-full items-center justify-between text-[12px] text-[#7a7a7a]">
         <time dateTime={post.date}>{formatDate(post.date)}</time>
