@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
+import { MermaidBlocks } from "~/components/MermaidBlocks";
 import { YouTubeEmbed } from "~/components/YouTubeEmbed";
 import { buildBlogPostSchema } from "~/utils/blog-schema";
 import { getPostBySlug } from "~/utils/blog.server";
@@ -124,6 +125,7 @@ export default function BlogPost() {
             itemProp="articleBody"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+          <MermaidBlocks contentKey={post.slug} />
 
           {post.tags.length > 0 && (
             <footer className="mt-12 border-t border-[#e5e5e5] pt-8">

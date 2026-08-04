@@ -2,7 +2,7 @@
 title: "Building Safe Faces: on-device face privacy for parents who still want to post"
 description: "How I designed and shipped an iOS face-blur product with Vision + AVFoundation — architecture decisions, privacy contracts, TestFlight testing, and the Cursor + Xcode MCP workflow that got it built."
 date: "2026-07-29"
-modified: "2026-08-03"
+modified: "2026-08-04"
 published: true
 category: "engineering"
 tags: ["ios", "swiftui", "vision", "avfoundation", "privacy", "product", "testflight", "cursor", "mcp", "safe-faces"]

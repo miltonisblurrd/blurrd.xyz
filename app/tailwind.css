@@ -90,6 +90,14 @@ body {
   @apply bg-transparent p-0 font-['JetBrains_Mono'] text-[14px] leading-[1.6] text-[#4a4a4a];
 }
 
+.prose-blog .mermaid-diagram {
+  @apply my-8 overflow-x-auto rounded border border-[#e5e5e5] bg-white p-4 md:p-6;
+}
+
+.prose-blog .mermaid-diagram svg {
+  @apply mx-auto block h-auto max-w-full;
+}
+
 .prose-blog table {
   @apply mb-8 w-full border-collapse font-sans text-[15px] md:text-[17px];
 }
