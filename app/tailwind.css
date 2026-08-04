@@ -25,11 +25,11 @@ body {
 }
 
 .prose-blog h2 {
-  @apply mb-4 mt-12 font-['JetBrains_Mono'] text-[22px] font-normal leading-[1.3] text-black md:mt-16 md:text-[24px];
+  @apply mb-4 mt-12 scroll-mt-6 font-['JetBrains_Mono'] text-[22px] font-normal leading-[1.3] text-black md:mt-16 md:text-[24px];
 }
 
 .prose-blog h3 {
-  @apply mb-3 mt-8 font-['JetBrains_Mono'] text-[18px] font-normal leading-[1.35] text-black md:mt-10 md:text-[20px];
+  @apply mb-3 mt-8 scroll-mt-6 font-['JetBrains_Mono'] text-[18px] font-normal leading-[1.35] text-black md:mt-10 md:text-[20px];
 }
 
 .prose-blog h4 {

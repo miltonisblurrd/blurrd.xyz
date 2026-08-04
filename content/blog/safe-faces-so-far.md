@@ -15,7 +15,9 @@ Birthday party. First day of school. Team photo. The moment is good — then you
 
 That’s the product. Not “stop posting.” Not a lecture. Just: cover the faces you don’t want public, keep the ones you do, and post with confidence.
 
-This post is the deeper build story — for other engineers and teams who care about privacy products that actually ship. What I built, why the architecture looks the way it does, how we’re testing it, how I built it with Cursor and Xcode MCP, and what I’d still change.
+This post is the deeper build story — for other engineers and teams who care about privacy products that actually ship. What I built, why the architecture looks the way it does, how we’re testing it, how I routed different models at different jobs and wrote prompts as product law, and what I’d still change.
+
+**Here for the AI workflow?** Jump to [Cursor, Xcode MCP, and model routing](#how-i-actually-built-it-cursor-xcode-mcp-and-model-routing) — the loop, the model routing table, and prompting as specification.
 
 > Post the memory. Not their face.
 
@@ -253,7 +255,7 @@ For companies reading this: if your privacy product looks like a SOC dashboard, 
 
 ---
 
-## How I actually built it: Cursor + Xcode MCP + model routing
+## How I actually built it: Cursor, Xcode MCP, and model routing
 
 I didn’t build Safe Faces by babysitting Xcode all day and hand-typing every compositor frame.
 

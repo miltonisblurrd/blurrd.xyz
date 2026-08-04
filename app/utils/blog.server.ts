@@ -5,7 +5,7 @@ import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 
@@ -59,7 +59,8 @@ async function markdownToHtml(markdown: string): Promise<string> {
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSlug)
-    .use(rehypeSanitize)
+    // Drop the clobber prefix so in-post anchor links match heading slugs.
+    .use(rehypeSanitize, { ...defaultSchema, clobberPrefix: "" })
     .use(rehypeStringify)
     .process(markdown);
 
