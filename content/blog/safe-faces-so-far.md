@@ -1,12 +1,12 @@
 ---
 title: "Building Safe Faces: on-device face privacy for parents who still want to post"
-description: "How I designed and shipped an iOS face-blur product with Vision + AVFoundation — architecture decisions, privacy contracts, TestFlight testing, and why defaults matter more than features."
+description: "How I designed and shipped an iOS face-blur product with Vision + AVFoundation — architecture decisions, privacy contracts, TestFlight testing, and the Cursor + Xcode MCP workflow that got it built."
 date: "2026-07-29"
-modified: "2026-07-29"
+modified: "2026-08-03"
 published: true
 category: "engineering"
-tags: ["ios", "swiftui", "vision", "avfoundation", "privacy", "product", "testflight", "safe-faces"]
-readTime: "14 min read"
+tags: ["ios", "swiftui", "vision", "avfoundation", "privacy", "product", "testflight", "cursor", "mcp", "safe-faces"]
+readTime: "18 min read"
 ---
 
 I built Safe Faces for one reason: parents should be able to post online without that little pause before they hit share.
@@ -15,7 +15,7 @@ Birthday party. First day of school. Team photo. The moment is good — then you
 
 That’s the product. Not “stop posting.” Not a lecture. Just: cover the faces you don’t want public, keep the ones you do, and post with confidence.
 
-This post is the deeper build story — for other engineers and teams who care about privacy products that actually ship. What I built, why the architecture looks the way it does, how we’re testing it, and what I’d still change.
+This post is the deeper build story — for other engineers and teams who care about privacy products that actually ship. What I built, why the architecture looks the way it does, how we’re testing it, how I built it with Cursor and Xcode MCP, and what I’d still change.
 
 > Post the memory. Not their face.
 
@@ -253,6 +253,120 @@ For companies reading this: if your privacy product looks like a SOC dashboard, 
 
 ---
 
+## How I actually built it: Cursor + Xcode MCP + model routing
+
+I didn’t build Safe Faces by babysitting Xcode all day and hand-typing every compositor frame.
+
+I built it in Cursor with Xcode still in the loop — via **Xcode MCP** — and I treated models like tools with different jobs, not one magic coworker that “does the app.”
+
+That distinction matters. AI can ship a demo fast. A privacy product for kids still needs you in the driver’s seat.
+
+### The loop
+
+My day-to-day looked like this:
+
+1. **Think in Cursor** — product rules, architecture, file structure, “what must never fail”
+2. **Implement in Cursor** — SwiftUI screens, Vision/AVFoundation pipeline, tests, landing page
+3. **Build / run / inspect through Xcode MCP** — don’t break flow by constant app-switching
+4. **Verify on device / TestFlight** — soccer field footage doesn’t care about your prompt
+5. **Feed the failure back into Cursor** — “missed face at 0:12,” not “make tracking better”
+
+Cursor is where the system lives. Xcode is still the source of truth for compile, run, and Apple platform reality. MCP is the bridge so I’m not copy-pasting between two brains.
+
+Been using Cursor + Xcode MCP on this. So easy. So fun. Also: still not autopilot.
+
+### Why Xcode MCP mattered
+
+iOS work has a tax: you write in one place, then jump to Xcode to build, run, dig through logs, poke at the project.
+
+With Xcode MCP, that tax got lower. I could stay in the agent conversation and still ask for the things that used to force a context switch:
+
+- build the project
+- run on a simulator / device path
+- inspect what Xcode actually sees
+- chase compile and runtime issues without losing the thread of the change
+
+For Safe Faces, that mattered most on the hard files — `FaceTrackingPipeline`, `BlurringCompositor`, `FaceCoverageValidator`. Those aren’t “generate a view” tasks. They’re “change this, build, watch it fail, tighten the contract, build again” tasks. Keeping Cursor and Xcode connected made that loop tighter.
+
+The win isn’t “I never open Xcode.” The win is: Xcode stops being a wall and starts being a tool the agent can talk to.
+
+### Different models for different jobs
+
+I don’t use one model for everything. That’s how you get confident garbage.
+
+Rough routing that worked for me:
+
+| Job | What I want from the model | Why |
+|-----|----------------------------|-----|
+| Product / architecture | Strong reasoning, slow down, challenge assumptions | Defaults, fail-closed export, on-device constraints |
+| Swift systems work | Careful edits, respect existing types, don’t invent APIs | Vision + AVFoundation hate vibes |
+| UI / brand / landing | Taste + consistency with the design system | Cream/blue language, parent tone, no AI hype copy |
+| Tests / contracts | Pedantic, literal, edge-case hungry | Blur-by-default and resolver parity are law |
+| Quick refactors / glue | Fast model, small scope | Rename, wire a button, move a helper |
+| Review / “did we lie?” | Skeptical second pass | Marketing claims vs what the code actually enforces |
+
+The pattern: **plan with a deep model, implement with a focused one, verify with the pedantic one, then prove it in Xcode.**
+
+When I let one chat do “design the privacy model + rewrite the compositor + write the landing hero,” quality dropped. When I split the work — “first lock the contract, then implement against it, then build” — the app got sharper.
+
+### What I prompted for (and what I didn’t)
+
+The product principles above weren’t just docs for me. They were the prompts. Good asks on this project sounded like product law:
+
+- “Empty visible set means blur everyone. Don’t change that.”
+- “Preview overlays and export must use the same resolver.”
+- “If coverage fails, refuse export. Don’t soften this into a warning.”
+- “No third-party SDKs. No analytics. On-device only.”
+
+Bad prompts (that I learned to stop writing):
+
+- “Make tracking smarter”
+- “Add AI features”
+- “Just make export work”
+- “Improve the UI”
+
+Vague asks get vague architecture. Specific contracts get shippable code.
+
+### Where AI helped most
+
+**1. Moving across the whole stack in one workspace**
+Brand guidelines, SwiftUI, video pipeline, Next.js landing, TestFlight funnel — same product brain. I wasn’t waiting on a handoff between “design person,” “iOS person,” and “web person.” That was me + Cursor, iterating in public with myself.
+
+**2. Keeping the privacy story honest**
+I’d ask a model to compare landing copy against actual behavior. If the site said something the validator didn’t enforce, we fixed the copy or the code. Usually the code.
+
+**3. Tests as a forcing function**
+Having the agent write and extend the Swift Testing contracts from the testing section made the “safe by default” rule harder to accidentally break later. The model is great at being annoying in a useful way: “what happens if `visibleFaceIDs` is empty?”
+
+**4. Speed without abandoning taste**
+The camera screen, editor chrome, side nav, brand refresh — those went faster because I could design and implement in the same session. I still made the calls on warmth vs tech-bro privacy cosplay.
+
+### Where I still had to be the adult
+
+AI will happily generate a beautiful path that uploads the video “just for processing.”
+
+Hard no.
+
+AI will also paper over a flaky tracker with “best effort” export.
+
+Also no.
+
+Every refusal in this post — media never leaves the device, blur everyone by default, fail closed on bad coverage, don’t market unfinished overlays as shipped, don’t call the product “AI-powered” when parents are already anxious about scraping — is a human decision. Models accelerate the build. They do not own the product principles.
+
+### A realistic picture (not the LinkedIn version)
+
+Some days Cursor + Xcode MCP felt unfair — in a good way. Scaffold a screen, wire Vision, generate tests, bounce a build error, fix it, keep going.
+
+Other days the video pipeline reminded me I’m still writing a real AVFoundation app. Drift, occlusion, orientation, identity flips. You can prompt forever. Eventually you need a clip of kids running around and a cold look at the timeline.
+
+So the workflow isn’t “vibe code an App Store app.” It’s:
+
+> Use Cursor to move fast. Use different models on purpose. Use Xcode MCP to stay honest with the compiler. Use TestFlight to stay honest with parents.
+
+That’s how Safe Faces got from idea → brand → app → landing → open beta without pretending the hard parts were free.
+
+---
+
 ## What’s hard / what’s next
 
 Still beta. It will miss on weird clips. That’s expected.
@@ -286,6 +400,8 @@ I’m deliberately not rushing “smart AI suggestions.” The positioning is co
 
 **Separate private web repo.** Proprietary iOS stays closed; marketing still ships.
 
+**AI-assisted, human-owned.** Cursor and Xcode MCP set the pace. The contracts and refusals are mine.
+
 ---
 
 ## What this proves (for other builders / teams)
@@ -296,6 +412,7 @@ If you’re evaluating this as a case study:
 - I care about product contracts (defaults, fail-closed behavior), not just feature lists
 - I’m comfortable in SwiftUI + Vision + AVFoundation systems work, not only frontend web
 - I can also ship the go-to-market surface (landing, brand, TestFlight loop) without waiting on a committee
+- I work AI-native without outsourcing judgment: Cursor and Xcode MCP for velocity, deliberate model routing per job, human-owned privacy contracts
 - I’m honest about beta limits — which is how you earn trust with both users and technical readers
 
 If your team is building something in child safety, education media, or on-device computer vision — I’m interested in hard problems with clear ethics and sharper engineering constraints. That’s the fun stuff.
@@ -310,6 +427,7 @@ If your team is building something in child safety, education media, or on-devic
 - Don’t upload kids’ media to prove you care about kids’ media
 - TestFlight on messy real footage beats another week of happy-path demos
 - Marketing should under-claim; architecture should over-deliver on the contracts you publish
+- Route models by job and keep the compiler in the loop; agents move fast, they don’t own your ethics
 
 ---
 
