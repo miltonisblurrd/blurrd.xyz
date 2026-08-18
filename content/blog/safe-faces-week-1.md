@@ -308,3 +308,5 @@ Watch the [YouTube screen-share](https://www.youtube.com/watch?v=V4rcRMhlv04) fo
 If you’re building something that has to be right — or you want someone who treats agents like juniors with CI, not magic — reach out.
 
 See you next week.
+
+P.S. Sorry this video was blurry. I am by no means a videographer, but I can promise my content and quality will get better.
