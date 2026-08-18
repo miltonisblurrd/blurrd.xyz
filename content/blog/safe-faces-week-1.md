@@ -7,6 +7,7 @@ published: true
 category: "engineering"
 tags: ["ios", "qa", "cursor", "mcp", "vision", "privacy", "safe-faces", "build-in-public"]
 readTime: "11 min read"
+youtube: "https://www.youtube.com/watch?v=V4rcRMhlv04"
 ---
 
 Week one of shipping Safe Faces wasn’t a “fix a button” week.
@@ -302,7 +303,7 @@ What week one should signal if you’re hiring or looking to collaborate:
 
 Week one: truth system up. Preview locked. Ghosts still on the board — measured, logged, not ignored.
 
-I'll add the YouTube screen-share here as soon as it's up. Follow the series for week two. Beta: [TestFlight](https://testflight.apple.com/join/Uv7xJrkp) · site: [safefaces.xyz](https://www.safefaces.xyz/).
+Watch the [YouTube screen-share](https://www.youtube.com/watch?v=V4rcRMhlv04) for the walkthrough. Follow the series for week two. Beta: [TestFlight](https://testflight.apple.com/join/Uv7xJrkp) · site: [safefaces.xyz](https://www.safefaces.xyz/).
 
 If you’re building something that has to be right — or you want someone who treats agents like juniors with CI, not magic — reach out.
 
