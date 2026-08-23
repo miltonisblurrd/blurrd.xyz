@@ -238,22 +238,20 @@ Week three will keep that pressure on. Same rule as week one: **never weaken the
 
 ---
 
-## Why this week matters if you’re hiring or collaborating
+## Closing
 
-I’m Milton — software engineer, eight years in. Day job in product engineering; nights shipping Safe Faces and builds under @blurrdstudio / @symphny.
+Week two wasn’t a prettier demo. It was making the QA loop honest enough that I don’t have to sit at the desk to know when blur failed.
 
-Week two should signal:
+What I’m holding to:
 
-- I improve **systems**, not just demos  
-- I treat agents like juniors with CI — evidence in, thrash out  
-- I design for the parent’s hardest upload, not the friendly reel  
-- I’ll say what still fails, with a plan that doesn’t lower the bar  
+- Improve the **system**, not just the clip that already looks good  
+- Treat agents like juniors with CI — evidence in, thrash out  
+- Design for the parent’s hardest upload, not the friendly reel  
+- Say what still fails, with a plan that doesn’t lower the bar  
 
 Week 1: can we tell pass from fail?  
 Week 2: can we tell **when** and **why** — without me babysitting?
 
 I'll add the YouTube update here as soon as it's up. Previous deep dive: [Safe Faces Week 1](/blog/safe-faces-week-1). Beta: [TestFlight](https://testflight.apple.com/join/Uv7xJrkp) · site: [safefaces.xyz](https://www.safefaces.xyz/).
-
-If you’re building something that has to be right — or you want someone who puts rails on AI instead of hoping — reach out.
 
 See you in week three.
