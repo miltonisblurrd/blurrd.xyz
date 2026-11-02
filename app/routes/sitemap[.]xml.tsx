@@ -14,6 +14,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>${SITE_URL}/thoughts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
   ${posts
     .map(
       (post) => `

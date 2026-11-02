@@ -2,6 +2,171 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.marquee-down {
+  animation: marquee-down 36s linear infinite;
+}
+
+.marquee-up {
+  animation: marquee-up 40s linear infinite;
+}
+
+.marquee-col:hover .marquee-down,
+.marquee-col:hover .marquee-up,
+.marquee-row:hover .marquee-left,
+.marquee-row:hover .marquee-right {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee-left {
+  animation: marquee-left 42s linear infinite;
+}
+
+.marquee-right {
+  animation: marquee-right 46s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-down,
+  .marquee-up,
+  .marquee-left,
+  .marquee-right {
+    animation: none;
+  }
+
+  .bubble-in {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .line-in {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.bubble-in {
+  animation: bubble-in 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes line-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.line-in {
+  animation: line-in 0.45s ease both;
+}
+
+@keyframes marker-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.marker-draw {
+  animation: marker-draw 0.7s cubic-bezier(0.22, 0.7, 0.2, 1) 2.7s forwards;
+}
+
+.marker-draw-late {
+  animation-delay: 3s;
+}
+
+.marker-lines {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'><path d='M3 8.2 C 22 5.4, 38 11.4, 62 7.6 S 98 4.2, 124 8.8 S 158 11.2, 178 6.8 C 186 5.4, 192 7.2, 197 7.6' fill='none' stroke='%232563eb' stroke-width='3.4' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 0.42em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-bottom: 0.2em;
+  animation: marker-lines 0.7s cubic-bezier(0.22, 0.7, 0.2, 1) 2.7s forwards;
+}
+
+@keyframes marker-lines {
+  to {
+    background-size: 100% 0.42em;
+  }
+}
+
+@keyframes marker-highlight {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.marker-highlight {
+  position: absolute;
+  left: -0.08em;
+  top: 0.12em;
+  z-index: 0;
+  height: 0.78em;
+  width: calc(100% + 0.16em);
+  border-radius: 0.12em;
+  background: #ffe14a;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: marker-highlight 0.55s cubic-bezier(0.22, 0.7, 0.2, 1) 1.6s forwards;
+}
+
+.marker-highlight-next {
+  animation-delay: 2.25s;
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;

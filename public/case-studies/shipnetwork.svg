@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <rect width="1200" height="1600" fill="#141820"/>
+  <rect x="80" y="80" width="1040" height="1440" fill="none" stroke="#2e3848" stroke-width="2"/>
+  <text x="600" y="760" text-anchor="middle" fill="#f4f1ea" font-family="ui-monospace, monospace" font-size="42" letter-spacing="6">SHIPNETWORK</text>
+  <text x="600" y="830" text-anchor="middle" fill="#8a8a8a" font-family="ui-monospace, monospace" font-size="24" letter-spacing="4">PLACEHOLDER</text>
+</svg>
